@@ -2,51 +2,64 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-
   <title>Santhy Nails - Curso Básico de Nail Design</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonte Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
   <style>
+    /* RESET BÁSICO */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #4b0082, #7b2cbf);
       color: #ffffff;
+      padding-top: 80px;
     }
 
-    header {
-      padding: 60px 20px;
-      text-align: center;
+    html { scroll-behavior: smooth; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #4b0082;
+      padding: 15px 0;
+      z-index: 1000;
     }
 
-    /* TÍTULO DA MARCA */
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo { color: #fff; font-size: 22px; font-weight: bold; }
+
+    .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 500; }
+
+    /* HEADER / TOPO */
+    header { padding: 60px 20px; text-align: center; }
+
     .titulo-marca {
-      font-family: 'Times New Roman', sans-serif;
+      font-family: 'Times New Roman', serif;
       font-weight: 300;
       font-size: 90px;
       letter-spacing: 2px;
       margin-bottom: 5px;
     }
 
-    header h2 {
-  font-size: 32px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #ffffff; /* branco */
-  font-weight: 400;
-}
+    header h2 { font-size: 32px; margin-top: 0; margin-bottom: 15px; font-weight: 400; }
 
+    header p { font-size: 20px; max-width: 600px; margin: auto; }
 
-    header p {
-      font-size: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-
+    /* BOTÕES */
     .btn {
       display: inline-block;
       margin-top: 30px;
@@ -57,34 +70,27 @@
       font-weight: bold;
       text-decoration: none;
       border-radius: 30px;
-      transition: 0.7s;
+      transition: 0.5s;
     }
 
-    .btn:hover {
-      background: #e0aaff;
-    }
+    .btn:hover { background: #e0aaff; transform: scale(1.05); }
 
+    /* SEÇÕES LILÁS */
     section {
-      background: #ffffff;
+      background: #e0aaff;
       color: #333;
       padding: 60px 20px;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-    }
+    .container { max-width: 1000px; margin: auto; text-align: center; }
 
-    h2 {
-      color: #5a189a;
-      margin-bottom: 20px;
-    }
+    h2 { color: #ffffff; margin-bottom: 20px; }
 
+    /* CARDS */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 30px;
       margin-top: 40px;
     }
 
@@ -92,79 +98,298 @@
       background: #f5f0ff;
       padding: 30px;
       border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .price {
-      font-size: 36px;
-      color: #5a189a;
-      margin: 20px 0;
+    /* O BANNER */
+    .banner {
+      background-image: url("img/banner.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 400px;
+      width: 100%;
+      background-color: #4b0082; /* Se a imagem falhar, fica Roxo */
+      padding: 0; /* Remove o padding padrão das seções */
     }
 
-    footer {
-      background: #240046;
-      text-align: center;
-      padding: 30px;
-      font-size: 14px;
+    .price { font-size: 36px; color: #5a189a; margin: 20px 0; font-weight: bold; }
+
+    footer { background: #240046; text-align: center; padding: 30px; font-size: 14px; color: white; }
+
+    #comprar h2 {
+    color: #000000; /* Isso deixa apenas o h2 do investimento em preto */
+}
+
+/* Estado inicial: invisível e um pouco abaixo */
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(30px);
+    transition: all 0.8s ease-out; /* Isso faz o efeito ser suave na ida e na volta */
+}
+
+/* Estado final: visível e na posição correta */
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+.card-professora {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #f5f0ff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: left; /* Alinha o texto à esquerda */
+    color: #333;
+}
+
+.foto-professora {
+    width: 250px; /* Largura da foto */
+    height: 250px; /* Altura igual para ficar quadrada */
+    object-fit: cover; /* Não deixa a foto esticar */
+    border-radius: 15px; /* Bordas arredondadas como os cards */
+    border: 3px solid #5a189a;
+}
+
+.texto-professora h3 {
+    color: #5a189a;
+    margin-top: 0;
+}
+
+/* Ajuste para celular */
+@media (max-width: 600px) {
+    .card-professora {
+        flex-direction: column;
+        text-align: center;
     }
+}
+
+.feedback-section { background: #fdfaff; padding: 60px 20px; color: #333; }
+.star-rating { color: #ffcc00; font-size: 20px; margin-bottom: 10px; }
+.feedback-form { 
+    max-width: 600px; 
+    margin: 30px auto; 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+.feedback-form input, .feedback-form textarea {
+    width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
+}
+.feedback-list { max-width: 800px; margin: 40px auto; display: grid; gap: 20px; }
+.feedback-item { background: #fff; padding: 20px; border-radius: 12px; border-left: 5px solid #5a189a; text-align: left; }
+
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1 class="titulo-marca">Santhy Nails</h1>
-    <h2>Curso Básico de Nail Design</h2>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">Santhy Nails</div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#modulos">Módulos</a></li>
+      <li><a href="#comprar">Inscrição</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <p>Aprenda do zero as técnicas essenciais para começar no Nail Design e transformar isso em renda.</p>
-    <a href="#comprar" class="btn">Quero me inscrever</a>
-  </header>
+<header>
+  <h1 class="titulo-marca">Santhy Nails</h1>
+  <h2>Curso Básico de Nail Design</h2>
+  <p>Aprenda do zero as técnicas essenciais para começar no Nail Design e transformar isso em renda.</p>
+  <a href="#comprar" class="btn">Quero me inscrever</a>
+</header>
 
-  <section>
-    <div class="container">
-      <h2>O que você vai aprender</h2>
-
-      <div class="cards">
-        <div class="card">
-          <h3>Fundamentos</h3>
-          <p>Higienização, materiais, cuidados com unhas naturais e preparação correta.</p>
-        </div>
-
-        <div class="card">
-          <h3>Técnicas Básicas</h3>
-          <p>Lixamento, esmaltação, alongamento simples e acabamento profissional.</p>
-        </div>
-
-        <div class="card">
-          <h3>Design & Tendências</h3>
-          <p>Decorações simples, francesinha, encapsulado básico e noções de estética.</p>
-        </div>
+<section id="inicio" class="hidden">
+  <div class="container">
+    <h2>O que você vai aprender</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Fundamentos</h3>
+        <p>Higienização, materiais, cuidados com unhas naturais e preparação correta.</p>
+      </div>
+      <div class="card">
+        <h3>Técnicas Básicas</h3>
+        <p>Lixamento, esmaltação, alongamento simples e acabamento profissional.</p>
+      </div>
+      <div class="card">
+        <h3>Design & Tendências</h3>
+        <p>Decorações simples, francesinha, encapsulado básico e noções de estética.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="comprar">
-    <div class="container">
-      <h2>Investimento</h2>
-      <p class="price">R$ 70,00</p>
-      <p>Acesso imediato • Conteúdo online • Certificado incluso</p>
+<section class="banner" class="hidden"></section>
 
-      <a href="https://wa.me/5511960307628?text=Olá,%20Tenho%20interesse%20no%20curso%21%21" class="btn">
-        Comprar agora
-      </a>
-       <!-- NOVO BOTÃO: Acesso ao Curso -->
-      <a href="https://pay.kiwify.com.br/0BPmPHA" class="btn" target="_blank" style="background: #e0aaff; color: #5a189a; margin-left: 10px;">
-        Já sou aluno / Acessar curso
-      </a>
+<section id="modulos" class="hidden">
+  <div class="container">
+    <h2>Módulos do Curso</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Módulo 1 – Boas-vindas</h3>
+        <p>1- O que é nail design</p>
+        <p>2- Quanto dá pra ganhar</p>
+        <p>3- Erros de iniciante</p>
+      </div>
+      <div class="card">
+        <h3>Módulo 2 – Materiais Básicos</h3>
+        <p>1- O que é essencial</p>
+        <p>2- O que NÃO comprar no começo</p>
+        <p>3- Diferença de gel, fibra, acrílico</p>
+      </div>
+      <div class="card">
+        <h3>Módulo 3 – Preparação da Unha</h3>
+        <p>1- Higienização</p>
+        <p>2- Cutilagem básica</p>
+        <p>3- Lixamento certo</p>
+      </div>
+      <div class="card">
+        <h3>Módulo 4 – Esmaltação e Acabamento</h3>
+        <p>1- Esmaltação perfeita</p>
+        <p>2- Francesinha</p>
+        <p>3- Acabamento profissional</p>
+      </div>
+      <div class="card">
+        <h3>Módulo 5 – Primeira Cliente</h3>
+        <p>1- Quanto cobrar</p>
+        <p>2- Como atender</p>
+        <p>3- Como evitar dor de cabeça</p>
+        </div>
+        <div class="card">
+        <h3>Expansão e Parceria</h3>
+        <p>1- Como funciona a comissão</p>
+        <p>2– Como divulgar e vender de verdade</p>
+        <p>3– Regras + erros que atrapalham</p>
+        </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    © 2026 - Curso Básico de Nail Design • By Santhy Nails • Todos os direitos reservados
-  </footer>
+<section id="professora">
+  <div class="container">
+    <h2 style="color: #5a189a;">Quem será sua instrutora</h2>
+    
+    <div class="card-professora hidden"> <img src="img/professora.jpg" alt="Foto da Professora" class="foto-professora">
+      
+      <div class="texto-professora">
+        <h3>Santhy Nails</h3>
+        <p>Prazer, eu sou a Santhy e aos 18 anos escolhi o design de unhas como o caminho para realizar o sonho da minha independência financeira. No começo, o que me moveu foi a vontade de crescer, e foi buscando conhecimento e refinando cada detalhe da minha técnica que entendi o verdadeiro poder dessa profissão.
+Hoje, meu propósito é maior do que o meu próprio sucesso. Eu sei exatamente como é o frio na barriga de quem está começando, por isso decidi ensinar o básico necessário para você dar o seu ponta-pé inicial. Quero que você enxergue em cada atendimento a chance de transformar sua realidade, para que cada vez mais mulheres ocupem seus espaços e conquistem sua própria liberdade.</p>
+        <p>Neste curso, eu entrego todo o meu método de forma simples e direta, para que você comece a atender suas primeiras clientes com segurança.</p>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section id="comprar" class="hidden">
+  <div class="container">
+    <div class="card">
+    <h2>Investimento</h2>
+    <p class="price">R$ 70,00</p>
+    <p>Acesso imediato • Conteúdo online • Certificado incluso</p>
+    
+    <div style="margin-top: 20px;">
+        <a href="https://kiwify.app/oMLOHs8" class="btn" target="_blank" style="background: #5a189a; color: white;">
+          Comprar agora
+        </a>
+        <a href="https://dashboard.kiwify.com" class="btn" target="_blank" style="background: #ffffff; color: #5a189a; margin-left: 10px;">
+          Já sou aluno / Acessar curso
+        </a>
+    </div>
+  </div>
+</section>
+
+<section id="feedback" class="feedback-section hidden">
+  <div class="container">
+    <h2 style="color: #5a189a;">O que nossas alunas dizem</h2>
+    
+    <div class="feedback-form">
+      <h3>Deixe seu feedback</h3>
+      <input type="text" id="alunaNome" placeholder="Seu nome">
+      <select id="alunaNota" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+        <option value="5">⭐⭐⭐⭐⭐ (5 Estrelas)</option>
+        <option value="4">⭐⭐⭐⭐ (4 Estrelas)</option>
+        <option value="3">⭐⭐⭐ (3 Estrelas)</option>
+        <option value="2">⭐⭐ (2 Estrelas)</option>
+        <option value="1">⭐ (1 Estrelas)</option>
+      </select>
+      <textarea id="alunaComentario" rows="3" placeholder="O que achou do curso?"></textarea>
+      <button onclick="enviarFeedback()" class="btn" style="background: #5a189a; color: white; width: 100%; border: none; cursor: pointer;">Publicar Comentário</button>
+    </div>
+
+    <div id="listaFeedbacks" class="feedback-list">
+      <div class="feedback-item">
+        <div class="star-rating">⭐⭐⭐⭐⭐</div>
+        <p><strong>Larissa Cavalcante:</strong> O curso é maravilhoso! A Santhy explica muito bem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 - Curso Básico de Nail Design • By Santhy Nails • Todos os direitos reservados
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Quando entra na tela, aparece
+        entry.target.classList.add('show');
+      } else {
+        // Quando sai da tela (para cima ou para baixo), some de novo
+        entry.target.classList.remove('show');
+      }
+    });
+  }, {
+    threshold: 0.1 // Dispara quando 10% do elemento está visível
+  });
+
+  const hiddenElements = document.querySelectorAll('.hidden');
+  hiddenElements.forEach((el) => observer.observe(el));
+
+  function enviarFeedback() {
+    const nome = document.getElementById('alunaNome').value;
+    const nota = document.getElementById('alunaNota').value;
+    const comentario = document.getElementById('alunaComentario').value;
+    const lista = document.getElementById('listaFeedbacks');
+
+    if (nome === "" || comentario === "") {
+        alert("Por favor, preencha seu nome e o comentário!");
+        return;
+    }
+
+    // Criar as estrelas visualmente
+    let estrelas = "⭐".repeat(nota);
+
+    // Criar o novo comentário
+    const novoFeedback = document.createElement('div');
+    novoFeedback.className = 'feedback-item';
+    novoFeedback.innerHTML = `
+        <div class="star-rating">${estrelas}</div>
+        <p><strong>${nome}:</strong> ${comentario}</p>
+    `;
+
+    // Adicionar no topo da lista
+    lista.prepend(novoFeedback);
+
+    // Limpar campos
+    document.getElementById('alunaNome').value = "";
+    document.getElementById('alunaComentario').value = "";
+}
+</script>
 
 </body>
 </html>
-
-
-
-
