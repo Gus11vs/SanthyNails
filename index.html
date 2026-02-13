@@ -323,18 +323,14 @@ Hoje, meu propósito é maior do que o meu próprio sucesso. Eu sei exatamente c
         <option value="4">⭐⭐⭐⭐ (4 Estrelas)</option>
         <option value="3">⭐⭐⭐ (3 Estrelas)</option>
         <option value="2">⭐⭐ (2 Estrelas)</option>
-        <option value="1">⭐ (1 Estrelas)</option>
+        <option value="1">⭐ (1 Estrela)</option>
       </select>
       <textarea id="alunaComentario" rows="3" placeholder="O que achou do curso?"></textarea>
       <button onclick="enviarFeedback()" class="btn" style="background: #5a189a; color: white; width: 100%; border: none; cursor: pointer;">Publicar Comentário</button>
     </div>
 
     <div id="listaFeedbacks" class="feedback-list">
-      <div class="feedback-item">
-        <div class="star-rating">⭐⭐⭐⭐⭐</div>
-        <p><strong>Larissa Cavalcante:</strong> O curso é maravilhoso! A Santhy explica muito bem.</p>
       </div>
-    </div>
   </div>
 </section>
 
@@ -346,49 +342,93 @@ Hoje, meu propósito é maior do que o meu próprio sucesso. Eu sei exatamente c
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Quando entra na tela, aparece
         entry.target.classList.add('show');
       } else {
-        // Quando sai da tela (para cima ou para baixo), some de novo
         entry.target.classList.remove('show');
       }
     });
-  }, {
-    threshold: 0.1 // Dispara quando 10% do elemento está visível
-  });
+  }, { threshold: 0.1 });
 
   const hiddenElements = document.querySelectorAll('.hidden');
   hiddenElements.forEach((el) => observer.observe(el));
+</script>
 
-  function enviarFeedback() {
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCItUJiAeVCYMzMNKPvqoV5O8Y2auMOnuc",
+    authDomain: "santhy-nails.firebaseapp.com",
+    projectId: "santhy-nails",
+    storageBucket: "santhy-nails.firebasestorage.app",
+    messagingSenderId: "802093185084",
+    appId: "1:802093185084:web:09a99ebcfc8b706153eb39",
+    measurementId: "G-FE0RTDP04Y"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // FUNÇÃO PARA ENVIAR PARA O GOOGLE
+  window.enviarFeedback = async function() {
     const nome = document.getElementById('alunaNome').value;
-    const nota = document.getElementById('alunaNota').value;
+    const nota = parseInt(document.getElementById('alunaNota').value);
     const comentario = document.getElementById('alunaComentario').value;
-    const lista = document.getElementById('listaFeedbacks');
 
     if (nome === "" || comentario === "") {
-        alert("Por favor, preencha seu nome e o comentário!");
+        alert("Por favor, preencha todos os campos!");
         return;
     }
 
-    // Criar as estrelas visualmente
-    let estrelas = "⭐".repeat(nota);
+    try {
+        await addDoc(collection(db, "feedbacks"), {
+            nome: nome,
+            nota: nota,
+            comentario: comentario,
+            dataEnvio: new Date()
+        });
+        
+        alert("Feedback enviado com sucesso!");
+        document.getElementById('alunaNome').value = "";
+        document.getElementById('alunaComentario').value = "";
+        carregarFeedbacks(); 
+    } catch (e) {
+        console.error("Erro ao salvar: ", e);
+        alert("Erro ao salvar no banco de dados. Verifique as Regras no Firebase.");
+    }
+  }
 
-    // Criar o novo comentário
-    const novoFeedback = document.createElement('div');
-    novoFeedback.className = 'feedback-item';
-    novoFeedback.innerHTML = `
-        <div class="star-rating">${estrelas}</div>
-        <p><strong>${nome}:</strong> ${comentario}</p>
-    `;
+  // FUNÇÃO PARA CARREGAR DO GOOGLE
+  window.carregarFeedbacks = async function() {
+    const lista = document.getElementById('listaFeedbacks');
+    lista.innerHTML = "<p>Carregando depoimentos...</p>";
 
-    // Adicionar no topo da lista
-    lista.prepend(novoFeedback);
+    try {
+        const q = query(collection(db, "feedbacks"), orderBy("dataEnvio", "desc"));
+        const querySnapshot = await getDocs(q);
+        lista.innerHTML = ""; 
 
-    // Limpar campos
-    document.getElementById('alunaNome').value = "";
-    document.getElementById('alunaComentario').value = "";
-}
+        querySnapshot.forEach((doc) => {
+            const dados = doc.data();
+            const div = document.createElement('div');
+            div.className = 'feedback-item';
+            div.innerHTML = `
+                <div class="star-rating">${"⭐".repeat(dados.nota)}</div>
+                <p><strong>${dados.nome}:</strong> ${dados.comentario}</p>
+            `;
+            lista.appendChild(div);
+        });
+
+        if (querySnapshot.empty) {
+            lista.innerHTML = "<p>Ainda não há depoimentos. Seja a primeira!</p>";
+        }
+    } catch (e) {
+        console.error("Erro ao carregar: ", e);
+    }
+  }
+
+  carregarFeedbacks();
 </script>
 
 </body>
