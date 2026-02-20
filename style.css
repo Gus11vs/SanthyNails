@@ -81,13 +81,16 @@ html { scroll-behavior: smooth; }
 
 /* Imagem de Destaque */
 /* ================== SLIDESHOW DO TOPO ================== */
-.slideshow-container { 
-      width: 90%; /* Força a caixa a abrir na largura da tela */
-      max-width: 350px; 
-      height: 350px; 
-      margin: 20px auto; /* Centraliza a caixa e dá um respiro */
-      border-width: 2px;
-  }
+.slideshow-container {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    position: relative; /* ISSO AQUI É A CERCA QUE SEGURA AS FOTOS! */
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255,255,255,0.2);
+    overflow: hidden; /* Corta o que tentar vazar */
+}
 .slide {
     position: absolute;
     top: 0;
@@ -350,13 +353,13 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
   .section-title { font-size: 28px; margin-bottom: 30px;}
   
   /* Diminuindo as fotos (Slideshow e Professora) */
-  .slideshow-container { height: 320px; border-width: 2px;}
-  .foto-professora { 
-      width: 100%; 
-      max-width: 280px; 
-      height: 280px; 
-      box-shadow: 0px 10px 0px #e0aaff; 
-      margin-bottom: 20px;
+  .slideshow-container { 
+      width: 90%; 
+      max-width: 350px; 
+      height: 350px; 
+      margin: 20px auto;
+      position: relative; /* Reforçando a cerca no celular! */
+      border-width: 2px;
   }
   
   /* Ajustando botões e espaços */
@@ -387,4 +390,5 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
   .whatsapp-btn { bottom: 15px; right: 15px; width: 50px; height: 50px; }
   .wa-icon { width: 30px; height: 30px; }
 }
+
 
