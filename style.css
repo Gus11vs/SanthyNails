@@ -342,11 +342,52 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
 }
 
 /* Ajuste para o mobile: afastar um pouquinho para não atrapalhar a rolagem */
+/* ================== RESPONSIVO (MOBILE) ================== */
 @media (max-width: 850px) {
-  .whatsapp-btn {
-    bottom: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
+  /* Alinhamento geral */
+  .hero-container, .card-professora { flex-direction: column; text-align: center; }
+  .hero-text { text-align: center; }
+  
+  /* Diminuindo os textos para não vazar da tela */
+  .titulo-marca { font-size: 40px; }
+  .hero-text h2 { font-size: 22px; }
+  .section-title { font-size: 28px; margin-bottom: 30px;}
+  
+  /* Diminuindo as fotos (Slideshow e Professora) */
+  .slideshow-container { height: 320px; border-width: 2px;}
+  .foto-professora { 
+      width: 100%; 
+      max-width: 280px; 
+      height: 280px; 
+      box-shadow: 0px 10px 0px #e0aaff; 
+      margin-bottom: 20px;
   }
+  
+  /* Ajustando botões e espaços */
+  .btn { font-size: 16px; padding: 12px 25px; }
+  section { padding: 50px 15px; }
+  .garantia-box { flex-direction: column; text-align: center; padding: 20px;}
+  
+  /* Menu Mobile Ativo */
+  .menu-toggle { display: flex; }
+  .navbar { padding: 15px 0; }
+  .navbar.scrolled { background: #4b0082; } 
+  
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #4b0082;
+    padding: 20px 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  }
+  
+  .nav-links.active { display: flex; }
+
+  /* Ajuste do botão do WhatsApp */
+  .whatsapp-btn { bottom: 15px; right: 15px; width: 50px; height: 50px; }
+  .wa-icon { width: 30px; height: 30px; }
 }
