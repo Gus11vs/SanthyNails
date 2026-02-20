@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    /* Fundo mais escuro e profissional, mantendo a identidade roxa */
+    background: radial-gradient(circle at center, #3a0ca3 0%, #240046 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.login-wrapper {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 45px 35px;
+    border-radius: 20px;
+    /* Sombra mais difusa e elegante */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: slideUp 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Cabeçalho da marca */
+.brand-header h1 {
+    margin: 0;
+    color: #4b0082;
+    font-family: 'Times New Roman', serif; /* Mantendo a fonte do site principal */
+    font-size: 38px;
+    letter-spacing: 1px;
+}
+
+.brand-header p {
+    color: #7f8c8d;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Estilo dos Campos de Input com Ícones */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group .icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #95a5a6;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px; /* Padding esquerdo maior para caber o ícone */
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+    font-family: inherit;
+}
+
+/* Efeito ao clicar no input */
+.input-group input:focus {
+    border-color: #7b2cbf;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.1);
+}
+
+.input-group input:focus + .icon,
+.input-group input:valid + .icon {
+    color: #7b2cbf; /* Muda a cor do ícone quando focado */
+}
+
+/* Botão de Login */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    /* Gradiente no botão */
+    background: linear-gradient(135deg, #4b0082, #9d4edd);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(75, 0, 130, 0.2);
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(75, 0, 130, 0.3);
+    background: linear-gradient(135deg, #5a189a, #c77dff);
+}
+
+.btn-login .arrow-icon {
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.btn-login:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Mensagem de Erro */
+.erro-msg {
+    margin-top: 20px;
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 20px; /* Evita pulo no layout */
+}
+
+/* Animação de entrada */
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
