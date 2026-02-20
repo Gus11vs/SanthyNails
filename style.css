@@ -85,12 +85,13 @@ html { scroll-behavior: smooth; }
     width: 100%;
     max-width: 500px;
     height: 500px;
-    position: relative; /* ISSO AQUI É A CERCA QUE SEGURA AS FOTOS! */
+    position: relative;
     border-radius: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     border: 4px solid rgba(255,255,255,0.2);
-    overflow: hidden; /* Corta o que tentar vazar */
+    overflow: hidden; /* Garante que as fotos não vazem das bordas arredondadas */
 }
+
 .slide {
     position: absolute;
     top: 0;
@@ -340,6 +341,81 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
+/* ================== DÚVIDAS FREQUENTES (FAQ) ================== */
+.faq-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.faq-pergunta {
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none; /* Esconde a setinha feia padrão do navegador */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Esconde a setinha padrão no Chrome/Safari */
+.faq-pergunta::-webkit-details-marker {
+    display: none;
+}
+
+/* Cria o nosso próprio sinal de + */
+.faq-pergunta::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: #d8b4fe; /* Um roxinho claro lindo */
+    transition: 0.3s;
+}
+
+/* Quando a sanfona abre, o + vira - */
+details[open] .faq-pergunta::after {
+    content: '-';
+}
+
+.faq-resposta {
+    padding: 0 20px 20px 20px;
+    color: #e2e8f0;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+/* Botão Instagram na Navbar */
+.nav-instagram {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-instagram i {
+    font-size: 1.1rem;
+    color: #E1306C; /* A cor clássica do Insta para dar um destaque */
+}
+
+.nav-instagram:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    border-color: #E1306C;
+}
+
 /* Ajuste para o mobile: afastar um pouquinho para não atrapalhar a rolagem */
 /* ================== RESPONSIVO (MOBILE) ================== */
 @media (max-width: 850px) {
@@ -354,7 +430,11 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
   
   /* Diminuindo as fotos (Slideshow e Professora) */
   .slideshow-container { 
-      display: none; /* A MÁGICA É ESSA LINHA! Ela esconde a caixa toda no celular */
+      width: 90%; /* Força a caixa a abrir na largura da tela */
+      max-width: 350px; 
+      height: 350px; 
+      margin: 20px auto; /* Centraliza a caixa e dá um respiro */
+      border-width: 2px;
   }
   
   /* Ajustando botões e espaços */
@@ -385,6 +465,3 @@ footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
   .whatsapp-btn { bottom: 15px; right: 15px; width: 50px; height: 50px; }
   .wa-icon { width: 30px; height: 30px; }
 }
-
-
-
