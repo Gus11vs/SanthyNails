@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #fdfaff; /* Fundo base bem clarinho para ressaltar as seções roxas */
+  color: #333;
+  overflow-x: hidden;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ================== NAVBAR INTELIGENTE ================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent; /* Começa transparente */
+  padding: 20px 0;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+/* Classe adicionada via JS quando rola a tela */
+.navbar.scrolled {
+  background: rgba(75, 0, 130, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { color: #fff; font-size: 26px; font-weight: bold; font-family: 'Times New Roman', serif; }
+
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; margin: 0; padding: 0; }
+.nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: #e0aaff; }
+
+/* Botão no menu */
+.nav-btn {
+    background: #e0aaff;
+    color: #4b0082 !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.nav-btn:hover { background: #fff; transform: scale(1.05); }
+
+/* Menu Mobile (Escondido no Desktop) */
+.menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+.menu-toggle .bar { width: 25px; height: 3px; background-color: #fff; border-radius: 3px; transition: 0.3s; }
+
+/* ================== HERO SECTION (TOPO) ================== */
+.hero-section {
+  background: linear-gradient(135deg, #3a0ca3, #7b2cbf);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 20px 40px;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-text { flex: 1; text-align: left; }
+.hero-image-box { flex: 1; display: flex; justify-content: center; }
+
+/* Imagem de Destaque */
+/* ================== SLIDESHOW DO TOPO ================== */
+.slideshow-container {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    position: relative;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255,255,255,0.2);
+    overflow: hidden; /* Garante que as fotos não vazem das bordas arredondadas */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher o espaço sem amassar */
+    opacity: 0; /* Começa invisível */
+    transition: opacity 1s ease-in-out; /* Efeito de transição suave de 1 segundo */
+}
+
+.slide.active {
+    opacity: 1; /* Apenas a imagem ativa fica visível */
+}
+
+.tag-premium {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.titulo-marca { font-family: 'Times New Roman', serif; font-size: 80px; margin: 0 0 10px 0; line-height: 1; }
+.hero-text h2 { font-size: 32px; font-weight: 300; margin-bottom: 20px; color: #e0aaff; }
+.hero-text p { font-size: 18px; line-height: 1.6; margin-bottom: 40px; color: #f8f9fa; }
+
+/* ================== BOTÕES E EFEITOS ================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 35px;
+  background: #ffffff;
+  color: #4b0082;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-glow {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn:hover { background: #e0aaff; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(224, 170, 255, 0.6); }
+
+/* ================== SEÇÕES GERAIS ================== */
+section { padding: 80px 20px; }
+.section-light { background: #f5f0ff; }
+.section-title { text-align: center; color: #4b0082; font-size: 36px; margin-bottom: 50px; }
+
+.container { max-width: 1100px; margin: auto; }
+
+/* ================== CARDS PREMIUM ================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 1px solid #f0e6ff;
+}
+
+.premium-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(123, 44, 191, 0.15);
+    border-color: #e0aaff;
+}
+
+.card-icon { font-size: 45px; color: #7b2cbf; margin-bottom: 15px; }
+.module-icon { color: #f5b041; } /* Ícone dourado para módulos */
+
+.card h3 { color: #4b0082; margin-top: 0; font-size: 22px; }
+.card p { color: #555; line-height: 1.5; margin-bottom: 0; }
+
+/* ================== PROFESSORA ================== */
+.card-professora {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin: auto;
+}
+
+.foto-professora {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 15px 15px 0px #e0aaff; /* Efeito de sombra sólida */
+}
+
+.texto-professora h3 { color: #4b0082; font-size: 28px; margin-top: 0; }
+.texto-professora p { color: #555; line-height: 1.6; font-size: 16px; }
+
+/* ================== GARANTIA E CHECKOUT ================== */
+.garantia-box {
+    background: #4b0082;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    box-shadow: 0 10px 20px rgba(75, 0, 130, 0.2);
+}
+.icon-garantia { font-size: 50px; color: #f5b041; }
+.garantia-box h4 { margin: 0 0 5px 0; font-size: 20px; }
+.garantia-box p { margin: 0; font-size: 15px; color: #e0aaff; }
+
+.checkout-card {
+    max-width: 500px;
+    margin: auto;
+    border: 3px solid #7b2cbf;
+    position: relative;
+    padding-top: 50px;
+}
+
+.oferta-limitada {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 80%;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+.pulse-icon { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+.price-de { text-decoration: line-through; color: #999; margin-bottom: -10px; font-size: 18px;}
+.price { font-size: 50px; color: #27ae60; margin: 10px 0 20px 0; font-weight: bold; }
+
+.checkout-benefits { text-align: left; list-style: none; padding: 0; margin-bottom: 30px; }
+.checkout-benefits li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #555; font-weight: 500;}
+.check { color: #27ae60; }
+
+.btn-large { width: 100%; justify-content: center; background: #27ae60; color: white; padding: 20px; font-size: 20px;}
+.btn-large:hover { background: #2ecc71; color: white; transform: scale(1.02); }
+.seguranca-texto { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 13px; color: #7f8c8d; margin-top: 15px;}
+
+/* ================== FEEDBACKS ================== */
+.feedback-form { max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee;}
+.feedback-form input, .feedback-form select, .feedback-form textarea { width: 100%; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size: 15px;}
+.feedback-form .btn { background: #4b0082; color: white; width: 100%; justify-content: center;}
+
+.feedback-list { max-width: 800px; margin: 40px auto; display: grid; gap: 20px; }
+.feedback-item { background: #fff; padding: 25px; border-radius: 15px; border-left: 5px solid #f5b041; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.star-rating { color: #f5b041; font-size: 20px; margin-bottom: 10px; letter-spacing: 2px;}
+
+/* ================== FOOTER ================== */
+footer { background: #240046; text-align: center; padding: 40px 20px; color: #e0aaff; }
+footer h2 { color: white; margin-top: 0; font-family: 'Times New Roman', serif;}
+.admin-link { color: #7f8c8d; text-decoration: none; font-size: 12px; display: block; margin-top: 20px; }
+.admin-link:hover { color: white; }
+
+/* ================== ANIMAÇÕES E CLASSES ================== */
+.hidden { opacity: 0; filter: blur(5px); transform: translateY(40px); transition: all 0.8s ease-out; }
+.show { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+/* ================== RESPONSIVO (MOBILE) ================== */
+@media (max-width: 850px) {
+  .hero-container, .card-professora { flex-direction: column; text-align: center; }
+  .hero-text { text-align: center; }
+  .titulo-marca { font-size: 50px; }
+  .foto-professora { box-shadow: 0px 10px 0px #e0aaff; margin-bottom: 20px;}
+  .garantia-box { flex-direction: column; text-align: center; }
+  
+  /* Menu Mobile Ativo */
+  .menu-toggle { display: flex; }
+  .navbar.scrolled { background: #4b0082; } /* Fundo sólido sempre no mobile */
+  
+  .nav-links {
+    display: none; /* Esconde menu por padrão no celular */
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #4b0082;
+    padding: 20px 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  }
+  
+  .nav-links.active { display: flex; }
+}
+
+/* ================== BOTÃO WHATSAPP ================== */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25d366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  animation: pulse-wa 2s infinite;
+}
+
+.wa-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse-wa {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Ajuste para o mobile: afastar um pouquinho para não atrapalhar a rolagem */
+@media (max-width: 850px) {
+  .whatsapp-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+}

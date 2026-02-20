@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Administrativo | Santhy Nails</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-card">
+      
+      <div class="brand-header">
+        <h1>Santhy Nails</h1>
+        <p>Painel Administrativo</p>
+      </div>
+
+      <form id="loginForm" onsubmit="event.preventDefault(); logar();">
+        
+        <div class="input-group">
+          <span class="material-symbols-outlined icon">person</span>
+          <input type="text" id="usuario" placeholder="Usuário" required autocomplete="username">
+        </div>
+
+        <div class="input-group">
+          <span class="material-symbols-outlined icon">lock</span>
+          <input type="password" id="senha" placeholder="Senha" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login">
+            Acessar Painel
+            <span class="material-symbols-outlined arrow-icon">arrow_forward</span>
+        </button>
+
+      </form>
+      
+      <div id="erro" class="erro-msg"></div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
